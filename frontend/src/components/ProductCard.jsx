@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { FiStar, FiShoppingBag, FiHeart } from 'react-icons/fi'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
+import { formatINR } from '../utils/currency'
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart()
@@ -81,7 +82,7 @@ export default function ProductCard({ product }) {
           </div>
 
           <div className="flex items-center justify-between">
-            <span className="text-lg font-black">${parseFloat(product.price).toFixed(2)}</span>
+            <span className="text-lg font-black">{formatINR(product.price)}</span>
             {product.stock < 10 && (
               <span className="text-xs text-red-500 font-medium">Only {product.stock} left</span>
             )}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { formatINR } from '../utils/currency'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import { useCart } from '../context/CartContext'
@@ -115,7 +116,7 @@ export default function ProductDetail() {
           </div>
 
           {/* Price */}
-          <div className="text-4xl font-black mb-6">${product.price.toFixed(2)}</div>
+          <div className="text-4xl font-black mb-6">{formatINR(product.price)}</div>
 
           {/* Description */}
           <p className="text-gray-600 leading-relaxed mb-8 text-sm">{product.description}</p>
@@ -214,7 +215,7 @@ export default function ProductDetail() {
                 </div>
                 <div className="p-3">
                   <p className="font-semibold text-sm truncate">{p.name}</p>
-                  <p className="font-black">${p.price.toFixed(2)}</p>
+                  <p className="font-black">{formatINR(p.price)}</p>
                 </div>
               </Link>
             ))}

@@ -9,7 +9,7 @@ const categories = [
   { name: 'Running', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80', count: '24 styles' },
   { name: 'Sneakers', image: 'https://images.unsplash.com/photo-1562183241-840b8af0721e?auto=format&fit=crop&w=400&q=80', count: '36 styles' },
   { name: 'Basketball', image: 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=400&q=80', count: '18 styles' },
-  { name: 'Boots', image: 'https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=400&q=80', count: '12 styles' },
+  { name: 'Boots', image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=400&q=80', count: '12 styles' },
 ]
 
 const features = [
@@ -82,7 +82,7 @@ export default function Home() {
               <img
                 src="/logo.png"
                 alt="Foot Rush"
-                className="w-72 h-72 object-contain filter invert drop-shadow-2xl"
+                className="w-96 h-96 object-contain filter invert drop-shadow-2xl"
                 style={{ filter: 'invert(1) drop-shadow(0 0 40px rgba(150,100,255,0.5))' }}
               />
             </div>
@@ -177,7 +177,7 @@ export default function Home() {
       {/* Brand Story Banner */}
       <section className="bg-black text-white py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <img src="/logo.png" alt="Foot Rush" className="h-24 w-auto mx-auto mb-8 filter invert" />
+          <img src="/logo.png" alt="Foot Rush" className="h-36 w-auto mx-auto mb-8 filter invert" />
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-6">
             Built For Champions
           </h2>

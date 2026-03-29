@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { formatINR } from '../utils/currency'
 import { useWishlist } from '../context/WishlistContext'
 import { useCart } from '../context/CartContext'
 import { FiHeart, FiShoppingBag, FiTrash2, FiArrowRight } from 'react-icons/fi'
@@ -83,7 +84,7 @@ export default function Wishlist() {
                     {product.name}
                   </h3>
                 </Link>
-                <p className="font-black text-lg mb-3">${parseFloat(product.price).toFixed(2)}</p>
+                <p className="font-black text-lg mb-3">{formatINR(parseFloat(product.price))}</p>
 
                 {/* Size selector */}
                 {sizes.length > 0 && (

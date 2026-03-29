@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { formatINR } from '../utils/currency'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { FiPackage, FiChevronDown, FiChevronUp } from 'react-icons/fi'
@@ -73,7 +74,7 @@ export default function Orders() {
                 <div className="flex items-center gap-6">
                   <div className="text-right">
                     <p className="text-xs text-gray-500">Total</p>
-                    <p className="font-black text-xl">${parseFloat(order.total).toFixed(2)}</p>
+                    <p className="font-black text-xl">{formatINR(parseFloat(order.total))}</p>
                   </div>
                   {expanded === order.id ? <FiChevronUp size={20} /> : <FiChevronDown size={20} />}
                 </div>
@@ -119,7 +120,7 @@ export default function Orders() {
                           <div className="flex-1">
                             <p className="font-semibold text-sm">{item.name}</p>
                             <p className="text-xs text-gray-500">Size: {item.size} | Qty: {item.quantity}</p>
-                            <p className="text-sm font-bold">${(item.price * item.quantity).toFixed(2)}</p>
+                            <p className="text-sm font-bold">{formatINR((item.price * item.quantity))}</p>
                           </div>
                         </div>
                       ))}
@@ -144,7 +145,7 @@ export default function Orders() {
                       <div className="space-y-1 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-500">Subtotal</span>
-                          <span>${parseFloat(order.total).toFixed(2)}</span>
+                          <span>{formatINR(parseFloat(order.total))}</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-500">Status</span>

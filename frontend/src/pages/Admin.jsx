@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { formatINR } from '../utils/currency'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
@@ -142,7 +143,7 @@ export default function Admin() {
                 { icon: FiUsers, label: 'Customers', value: stats?.customers || 0, color: 'bg-blue-50' },
                 { icon: FiPackage, label: 'Products', value: stats?.products || 0, color: 'bg-purple-50' },
                 { icon: FiShoppingBag, label: 'Orders', value: stats?.orders || 0, color: 'bg-orange-50' },
-                { icon: FiDollarSign, label: 'Revenue', value: `$${(stats?.revenue || 0).toFixed(2)}`, color: 'bg-green-50' },
+                { icon: FiDollarSign, label: 'Revenue', value: formatINR(stats?.revenue || 0), color: 'bg-green-50' },
               ].map(({ icon: Icon, label, value, color }) => (
                 <div key={label} className={`${color} border border-gray-200 p-6`}>
                   <Icon size={28} className="mb-3" />
@@ -170,7 +171,7 @@ export default function Admin() {
                     <tr key={order.id} className="border-b border-gray-200 hover:bg-gray-50">
                       <td className="px-4 py-3 font-mono">#{order.id}</td>
                       <td className="px-4 py-3">{order.customer_name}</td>
-                      <td className="px-4 py-3 font-bold">${parseFloat(order.total).toFixed(2)}</td>
+                      <td className="px-4 py-3 font-bold">{formatINR(parseFloat(order.total))}</td>
                       <td className="px-4 py-3">
                         <span className={`text-xs font-bold px-2 py-1 capitalize ${
                           { pending: 'bg-yellow-100 text-yellow-800', processing: 'bg-blue-100 text-blue-800',
@@ -229,7 +230,7 @@ export default function Admin() {
                       <p className="truncate">{product.name}</p>
                     </td>
                     <td className="px-4 py-3 text-gray-500">{product.category}</td>
-                    <td className="px-4 py-3 font-black">${product.price.toFixed(2)}</td>
+                    <td className="px-4 py-3 font-black">{formatINR(product.price)}</td>
                     <td className="px-4 py-3">
                       <span className={`font-semibold ${product.stock < 10 ? 'text-red-500' : 'text-green-600'}`}>
                         {product.stock}
@@ -274,7 +275,7 @@ export default function Admin() {
                     <td className="px-4 py-3 font-mono font-bold">#{order.id}</td>
                     <td className="px-4 py-3">{order.customer_name}</td>
                     <td className="px-4 py-3 text-gray-500">{order.customer_email}</td>
-                    <td className="px-4 py-3 font-black">${parseFloat(order.total).toFixed(2)}</td>
+                    <td className="px-4 py-3 font-black">{formatINR(parseFloat(order.total))}</td>
                     <td className="px-4 py-3">
                       <select
                         value={order.status}

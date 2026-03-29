@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import { WishlistProvider } from './context/WishlistContext'
+import { LanguageProvider } from './context/LanguageContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -57,6 +58,7 @@ function AppContent() {
 export default function App() {
   return (
     <Router>
+      <LanguageProvider>
       <AuthProvider>
         <CartProvider>
           <WishlistProvider>
@@ -85,6 +87,7 @@ export default function App() {
           </WishlistProvider>
         </CartProvider>
       </AuthProvider>
+      </LanguageProvider>
     </Router>
   )
 }

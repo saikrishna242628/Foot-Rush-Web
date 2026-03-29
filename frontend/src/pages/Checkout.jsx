@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { formatINR } from '../utils/currency'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/AuthContext'
@@ -111,16 +112,16 @@ export default function Checkout() {
           <h3 className="font-bold mb-2">Order Summary</h3>
           <div className="space-y-1 text-sm text-gray-600">
             <div className="flex justify-between">
-              <span>Items:</span><span>${cartTotal.toFixed(2)}</span>
+              <span>Items:</span><span>{formatINR(cartTotal)}</span>
             </div>
             <div className="flex justify-between">
-              <span>Shipping:</span><span>{shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}`}</span>
+              <span>Shipping:</span><span>{shippingCost === 0 ? 'FREE' : formatINR(shippingCost)}</span>
             </div>
             <div className="flex justify-between">
-              <span>Tax:</span><span>${tax.toFixed(2)}</span>
+              <span>Tax:</span><span>{formatINR(tax)}</span>
             </div>
             <div className="flex justify-between font-black text-black border-t border-gray-200 pt-2 mt-2">
-              <span>Total:</span><span>${total.toFixed(2)}</span>
+              <span>Total:</span><span>{formatINR(total)}</span>
             </div>
           </div>
         </div>
@@ -312,7 +313,7 @@ export default function Checkout() {
                         <p className="text-sm font-semibold">{item.name}</p>
                         <p className="text-xs text-gray-500">Size: {item.size} | Qty: {item.quantity}</p>
                       </div>
-                      <p className="font-bold text-sm">${(item.price * item.quantity).toFixed(2)}</p>
+                      <p className="font-bold text-sm">{formatINR((item.price * item.quantity))}</p>
                     </div>
                   ))}
                 </div>
@@ -325,7 +326,7 @@ export default function Checkout() {
                   disabled={loading}
                   className="btn-primary flex-1 disabled:opacity-70"
                 >
-                  {loading ? 'Placing Order...' : `Place Order · $${total.toFixed(2)}`}
+                  {loading ? 'Placing Order...' : `Place Order · ${formatINR(total)}`}
                 </button>
               </div>
             </div>
@@ -347,28 +348,28 @@ export default function Checkout() {
                     </span>
                   </div>
                   <span className="flex-1 truncate">{item.name}</span>
-                  <span className="font-semibold">${(item.price * item.quantity).toFixed(2)}</span>
+                  <span className="font-semibold">{formatINR((item.price * item.quantity))}</span>
                 </div>
               ))}
             </div>
             <div className="border-t border-gray-200 pt-4 space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-500">Subtotal</span>
-                <span>${cartTotal.toFixed(2)}</span>
+                <span>{formatINR(cartTotal)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-500">Shipping</span>
                 <span className={shippingCost === 0 ? 'text-green-600' : ''}>
-                  {shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}`}
+                  {shippingCost === 0 ? 'FREE' : formatINR(shippingCost)}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-500">Tax</span>
-                <span>${tax.toFixed(2)}</span>
+                <span>{formatINR(tax)}</span>
               </div>
               <div className="flex justify-between font-black text-base border-t border-gray-200 pt-2 mt-2">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>{formatINR(total)}</span>
               </div>
             </div>
           </div>
